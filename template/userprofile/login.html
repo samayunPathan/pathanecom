@@ -1,0 +1,13 @@
+{% extends 'core_app/base.html'%}
+{%block title%}Log in{%endblock%}
+{%block content%}
+<h1 class="text-2xl">Log in</h1>
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button class="mt-6 py-4 px-8 bg-teal-600 text-white rounded-xl">Log in</button>
+</form>
+<div class="mt-6 inline-block py-4 px-8 bg-teal-600 text-white rounded-xl">
+<a href="{% url 'userprofile:signup' %}">Or Signup</a>
+</div>
+{%endblock%}

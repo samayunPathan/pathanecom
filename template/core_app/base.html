@@ -1,0 +1,63 @@
+{% load menu %}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{%block title %}{%endblock%}| PATHAN ECOM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+  <nav class="max-w-6xl py-10 flex items-center justify-between bg-teal-600 mx-auto py-4 px-6">
+    <div class="logo">
+
+      <a href="/" class="text-xl text-white">Pathan Ecom</a>
+    </div>
+    <div class="search">
+      <form method="get" action="/search/" class="flex items-center space-x-3">
+        <input type="search" name="query" class="py-2 px-4 rounded-xl" placeholder="Search ...">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+
+
+    <div class="menu flex space-x-4 items-center">
+      {% menu %}
+      <a href="{% url 'store:cart_view'%}"
+        class="flex py-2 px-2 text-white rounded-xl bg-teal-600 hover:bg-teal-800"><svg
+          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+        </svg>({{cart | length}}) </a>
+      {% if request.user.is_authenticated%}
+      <a href="{% url 'userprofile:myaccount'%}"
+        class="text-white py-2 px-2 bg-teal-700 rounded-xl hover:bg-teal-800">My Account</a>
+      {% if request.user.useprofile.is_vendor %}
+      <a href="{%url 'userprofile:mystore'%}" class="text-white py-2 px-2 bg-teal-700 rounded-xl hover:bg-teal-800">My
+        Store</a>
+      {% endif %}
+      {% endif%}
+    </div>
+  </nav>
+  <div class="max-w-4xl mx-auto py-4 px-6">
+
+    {%block content%}
+
+    {%endblock%}
+  </div>
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

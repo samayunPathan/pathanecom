@@ -1,0 +1,38 @@
+{% extends 'core_app/base.html'%}
+{%block title%}orders {%endblock%}
+
+{%block content%}
+<h2 class="text-xl mt-6 mb-4">My Orders </h2>
+<div class="flex flex-wrap mb-4">
+    <div class="w-1/4">
+        <strong>Order ID</strong>
+    </div>
+    <div class="w-1/4">
+        <strong>Title</strong>
+    </div>
+    <div class="w-1/4">
+        <strong>Quantity</strong>
+    </div>
+    <div class="w-1/4">
+        <strong>Price</strong>
+    </div>
+</div>
+
+{% for order_item in orders %}
+<div class="flex flex-wrap ">
+    <div class="w-1/4">
+        {{order_item.id}}
+    </div>
+    <div class="w-1/4">
+        {{order_item.get_products}}
+    </div>
+    <div class="w-1/4">
+        {{order_item.get_quantity}}
+    </div>
+    <div class="w-1/4">
+        BDT {{order_item.get_total_price}}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}  

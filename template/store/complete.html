@@ -1,0 +1,13 @@
+{% extends 'core_app/base.html'%}
+{%block title%}Checkout{%endblock%}
+{%block content%}
+
+<h1 class="text-2xl mb-6">Payment successfull !</h1>
+<div class ="px-10 py-4 mt-4">
+    <a href="{% url 'userprofile:my_order_detail' %}">Check Order Details</a>
+    <a href="{% url 'core_app:font_page' %}">For More Shopping ...</a>
+</div>
+
+
+    
+{% endblock %}
